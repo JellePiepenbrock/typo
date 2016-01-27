@@ -1,7 +1,7 @@
 class Admin::CategoriesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
-  def index; redirect_to :action => 'new' ; end
+  def index; end
   def edit; new_or_edit;  end
 
   def new 
