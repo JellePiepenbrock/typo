@@ -5,7 +5,12 @@ class Admin::CategoriesController < Admin::BaseController
   def edit; new_or_edit;  end
 
   def new 
-    @category = Category.new
+    respond_to do |format|
+      format.html { new_or_edit }
+      format.js { 
+        @category = Category.new
+      }
+    end
   end
 
   def destroy
@@ -20,8 +25,12 @@ class Admin::CategoriesController < Admin::BaseController
 
   def new_or_edit
     @categories = Category.find(:all)
-    @category = Category.find(params[:id])
-    @category.attributes = params[:category]
+    if params[:id].nil?
+      @category = Category.new
+    else
+      @category = Category.find(params[:id])
+      @category.attributes = params[:category]
+    end
     if request.post?
       respond_to do |format|
         format.html { save_category }
@@ -38,7 +47,8 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def save_category
-    if @category.save!
+    @category.update_attributes(params[:category])
+    if @category.save
       flash[:notice] = _('Category was successfully saved.')
     else
       flash[:error] = _('Category could not be saved.')

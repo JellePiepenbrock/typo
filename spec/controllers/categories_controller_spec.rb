@@ -202,3 +202,14 @@ describe CategoriesController, "SEO Options" do
     response.should_not have_selector(expected)
   end
 end
+
+describe CategoriesController do
+  render_views
+
+  describe "new" do
+    it "renders the new category template" do
+      get :new
+      response.should contain("Description")
+    end
+  end
+end
