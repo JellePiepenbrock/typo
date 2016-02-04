@@ -14,13 +14,13 @@ Feature: Merge Articles
 
         Given the following articles exist:
             | id | title    | author | user_id | body     | allow_comments | published | published_at        | state     | type    |
-            | 3  | Article1 | user_1 | 2       | Content1 | true           | true      | 2012-23-11 21:30:00 | published | Article |
-            | 4  | Article2 | user_2 | 3       | Content2 | true           | true      | 2012-24-11 22:00:00 | published | Article |
+            | 3  | Article1 | user_1 | 2       | Content1 | true           | true      | 2016-03-02 15:34:00 | published | Article |
+            | 4  | Article2 | user_2 | 3       | Content2 | true           | true      | 2016-04-02 23:54:00 | published | Article |
 
         Given the following comments exist:
             | id | type    | author | body     | article_id | user_id | created_at          |
-            | 1  | Comment | user_1 | Comment1 | 3          | 2       | 2012-23-11 21:31:00 |
-            | 2  | Comment | user_1 | Comment2 | 4          | 2       | 2012-24-11 22:01:00 |
+            | 1  | Comment | user_1 | Comment1 | 3          | 2       | 2016-03-02 15:35:00 |
+            | 2  | Comment | user_1 | Comment2 | 4          | 2       | 2016-04-02 23:55:00 |
 
     Scenario: A non-admin cannot merge articles
         Given I am logged in as "user_1" with pass "1234567"
